@@ -16,6 +16,8 @@ def prereg():
     email = None
     username = None
     phoneNumber = None
+    age = 0
+    firstName = None
     if request.method == 'POST':
         email = request.form['email']
         username = request.form['username']
@@ -23,12 +25,13 @@ def prereg():
         firstName = request.form["firstName"]
    #     lastName = request.form["Child's Last Name"]
    #     siblings = request.form["Siblings?"]
-        phoneNumber = request.form['phoneNumber']
+ #       phoneNumber = request.form['phoneNumber']
        #  Check that email does not already exist (not a great query, but works)
         if not db.session.query(User).filter(User.email == email).count():
             reg = User(username,email,phoneNumber)
             reg2 = Child(firstName,age)
             db.session.add(reg)
+            db.session.commit()
             db.session.add(reg2)
             db.session.commit()
             return render_template('success.html')
