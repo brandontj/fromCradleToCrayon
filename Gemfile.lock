@@ -239,10 +239,6 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    rspec_postgres_constraints (0.1.0)
-      activerecord
-      activesupport
-      rspec
     rubocop (0.56.0)
       parallel (~> 1.10)
       parser (>= 2.5)
@@ -359,7 +355,6 @@ DEPENDENCIES
   rails-perftest
   rspec-its (~> 1.2.0)
   rspec-rails (~> 3.5.0)
-  rspec_postgres_constraints
   rubocop
   rubocop-rspec
   rubocop-thread_safety

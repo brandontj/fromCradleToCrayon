@@ -15,6 +15,22 @@ ActiveRecord::Schema.define(version: 20180605172234) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "child", id: :serial, force: :cascade do |t|
+    t.string "firstName", limit: 120
+    t.integer "age"
+  end
+
+  create_table "migrate_version", primary_key: "repository_id", id: :string, limit: 250, force: :cascade do |t|
+    t.text "repository_path"
+    t.integer "version"
+  end
+
+  create_table "user", id: :serial, force: :cascade do |t|
+    t.string "email", limit: 120
+    t.string "username", limit: 80
+    t.string "phoneNumber"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
