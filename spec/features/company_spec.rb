@@ -1,48 +1,67 @@
-require 'rspec'
-require 'capybara/rails'
+require 'rails_helper'
 
-feature "create new comoany" do
-User.make(email: 'user@example.com', password: 'password')
-
-scenario 'Create empty company'do
-  visit '/company/new'
-  within("#company") do
-    fill_in('company_name', :with => '')
+RSpec.feature 'create new comoany', type: :feature do
+  background do
+#    user = create(:user)
+    visit '/'
   end
-  click_button 'Enter'
-  expect(page).to have_content 'Failure'
-end
-scenario 'Creating new company'do
-    visit '/company/new'
-    within("#company") do
-      fill_in('company_name', :with => 'Kroger')
+
+  #  Kroger = "Kroger"
+  #  Giant_Eagle = "Giant Eagle"
+
+  scenario 'Create empty company' do
+    user_logged_in
+    click_button 'Companies'
+    click_button 'New'
+    within('#company') do
+      fill_in('company_name', with: '')
     end
-     click_button 'Enter'
-     expect(page).to have_content 'Success'
-end
-scenario 'Edits an existing company'do
-      visit '/company/edit'
-      within("#company") do
-        find_field('Kroger').value
-        fill_in('company_name', :with => 'Giant Eagle')
-      end
-      click_button 'Enter'
-      expect(page).to have_content 'Success'
-    end
-end
-scenario 'Delete an existing company'do
-    visit '/company/delete'
-    within("#company") do
-      fill_in('company_name', :with => 'Giant Eagle')
+    click_button 'Enter'
+    expect(page).to have_content 'Failure'
+  end
+
+  scenario 'Creating new company' do
+    user_logged_in
+    click_button 'Companies'
+    click_button 'New'
+    within('#company') do
+      fill_in('company_name', with: 'Kroger')
     end
     click_button 'Enter'
     expect(page).to have_content 'Success'
-end
-scenario 'Delete company that doesnt exist'do
-  visit '/company/delete'
-  within("#company") do
-    fill_in('company_name', :with => 'Giant Eagle')
   end
-  click_button 'Enter'
-  expect(page).to have_content 'Failure'
+  scenario 'Edits an existing company' do
+    user_logged_in
+    click_button 'Companies'
+    click_button 'Edit'
+    within('#company') do
+      find_field('Kroger').value
+      fill_in('company_name', with: 'Giant Eagle')
+    end
+    click_button 'Enter'
+    expect(page).to have_content 'Success'
+  end
+
+  scenario 'Delete an existing company' do
+    user_logged_in
+    click_button 'Companies'
+    click_button 'Delete'
+    within('#company') do
+      fill_in('company_name', with: 'Giant Eagle')
+    end
+    click_button 'Enter'
+    expect(page).to have_content 'Success'
+  end
+
+  scenario 'Delete company that doesnt exist' do
+    user_logged_in
+    click_button 'Companies'
+    click_button 'Delete'
+    within('#company') do
+      fill_in('company_name', with: 'Giant Eagle')
+    end
+    click_button 'Enter'
+    expect(page).to have_content 'Failure'
+  end
+
 end

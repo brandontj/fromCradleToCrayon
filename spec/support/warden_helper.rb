@@ -5,8 +5,6 @@ module WardenHelper
   end
 
   def user_logged_in(user = create(:user))
-    login_as(user, :scope => :user)
-    visit '/'
+    login_as(user, scope: :user)
   end
 end
-
