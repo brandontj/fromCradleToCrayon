@@ -27,6 +27,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
+gem 'paranoia'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -34,15 +35,17 @@ gem 'font-awesome-sass'
 group :development, :test do
   gem 'database_cleaner'
   gem 'pdf-inspector'
-  gem 'pry'
   gem 'pry-byebug'
   gem 'pry-remote'
   gem 'pry-rescue'
+  gem 'pry-rails'
   gem 'rails-controller-testing'
   gem 'rspec-its', '~> 1.2.0'
   gem 'rspec-rails', '~> 3.5.0'
   gem 'spring-commands-rspec'
   gem 'rails-perftest'
+  gem 'faker'
+  gem 'standard'
 end
 
 group :test do
@@ -56,6 +59,8 @@ group :test do
   gem 'simplecov',        require: false
   gem 'simplecov-rcov',   require: false
   gem 'site_prism'
+  gem 'faraday'
+  gem 'functional_helpers'
 end
 
 group :development do
