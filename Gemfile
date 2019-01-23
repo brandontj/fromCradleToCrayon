@@ -34,11 +34,9 @@ gem 'paranoia'
 
 group :development, :test do
   gem 'database_cleaner'
-  gem 'pdf-inspector'
-  gem 'pry-byebug'
-  gem 'pry-remote'
-  gem 'pry-rescue'
+  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'rails-controller-testing'
   gem 'rspec-its', '~> 1.2.0'
   gem 'rspec-rails', '~> 3.5.0'
