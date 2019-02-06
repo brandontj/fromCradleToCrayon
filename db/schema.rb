@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20190123033858) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["expense_category_listing_id"], name: "index_expenses_on_expense_category_listing_id"
-    t.index ["vendor_id"], name: "index_expenses_on_vendor_id"
     t.index ["user_id"], name: "index_expenses_on_user_id"
+    t.index ["vendor_id"], name: "index_expenses_on_vendor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -84,6 +84,6 @@ ActiveRecord::Schema.define(version: 20190123033858) do
   add_foreign_key "expense_category_listings", "expense_categories"
   add_foreign_key "expense_category_listings", "expense_sub_categories"
   add_foreign_key "expenses", "expense_category_listings"
-  add_foreign_key "expenses", "vendors"
   add_foreign_key "expenses", "users"
+  add_foreign_key "expenses", "vendors"
 end
