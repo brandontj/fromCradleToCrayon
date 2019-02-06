@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190123033858) do
+ActiveRecord::Schema.define(version: 20190206010308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "demographics", force: :cascade do |t|
+    t.string "name", null: false
+    t.date "date_of_birth", null: false
+    t.date "start_date", null: false
+    t.date "end_date"
+    t.string "parent_name", null: false
+    t.string "allergy"
+    t.string "medicine"
+    t.string "sibling"
+    t.string "referral"
+  end
 
   create_table "expense_categories", force: :cascade do |t|
     t.string "category_name"
@@ -44,13 +56,11 @@ ActiveRecord::Schema.define(version: 20190123033858) do
     t.bigint "expense_category_listing_id"
     t.date "debit_date"
     t.money "debit", scale: 2
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["expense_category_listing_id"], name: "index_expenses_on_expense_category_listing_id"
     t.index ["vendor_id"], name: "index_expenses_on_vendor_id"
-    t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,14 +86,13 @@ ActiveRecord::Schema.define(version: 20190123033858) do
   create_table "vendors", force: :cascade do |t|
     t.string "company_name"
     t.string "company_description"
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
   end
 
   add_foreign_key "expense_category_listings", "expense_categories"
   add_foreign_key "expense_category_listings", "expense_sub_categories"
   add_foreign_key "expenses", "expense_category_listings"
   add_foreign_key "expenses", "vendors"
-  add_foreign_key "expenses", "users"
 end

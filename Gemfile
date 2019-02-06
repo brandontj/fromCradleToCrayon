@@ -51,14 +51,12 @@ group :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'rspec_postgres_constraints'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', require: false
   gem 'simplecov',        require: false
   gem 'simplecov-rcov',   require: false
   gem 'site_prism'
   gem 'faraday'
-  gem 'functional_helpers'
 end
 
 group :development do
