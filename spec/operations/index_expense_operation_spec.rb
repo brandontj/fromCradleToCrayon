@@ -5,14 +5,47 @@ RSpec.describe IndexExpenseOperation do
   let! :expense do
     create :expense
   end
-  describe '#initialize' do
-    it 'sets expense attr reader' do
-      ieo = IndexExpenseOperation.new(expense.user_id)
 
-      expect(ieo.user_id).to eq expense.user_id
+  let :expected_results do
+    category = expense.expense_category_listing
+    vendor = expense.vendor
+
+    [
+      {
+        debit_date: expense.debit_date,
+        debit: expense.debit,
+        user_id: expense.user_id,
+        created_on: expense.created_at,
+        updated_on: expense.updated_at,
+        removed_on: expense.deleted_at,
+        company_name: vendor.company_name,
+        company_description: vendor.company_description,
+        parent_category: category.expense_category.category_name,
+        sub_category: category.expense_sub_category.sub_category_name,
+      }
+    ]
+  end
+
+  describe '#results' do
+    let(:user_id) { expense.user_id }
+    let(:operation) { IndexExpenseOperation.new(user_id) }
+
+    context 'user has no expenses record' do
+      let(:empty_user_id) { create :user }
+      let(:empty_operation) { IndexExpenseOperation.new(empty_user_id) }
+
+      it 'returns an empty array' do
+        expect(empty_operation.results).to eq []
+      end
+    end
+
+    context 'user has expense records' do
+      let(:user_id) { expense.user_id }
+      let(:operation) { IndexExpenseOperation.new(user_id) }
+
+      it 'returns results' do
+        expect(operation.results).to eq expected_results
+      end
     end
   end
-  # describe '#results' do
-  #
-  # end
 end
