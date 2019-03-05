@@ -25,8 +25,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# gem 'bootstrap-sass'
-# gem 'font-awesome-sass'
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 gem 'paranoia'
 
 # Use Capistrano for deployment
@@ -57,7 +57,6 @@ group :test do
   gem 'simplecov-rcov',   require: false
   gem 'site_prism'
   gem 'faraday'
-  # gem 'functional_helpers'
 end
 
 group :development do
