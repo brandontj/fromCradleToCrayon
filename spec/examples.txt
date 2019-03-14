@@ -1,4 +1,5 @@
 example_id                                                 | status | run_time        |
 ---------------------------------------------------------- | ------ | --------------- |
-./spec/operations/index_expense_operation_spec.rb[1:1:1:1] | passed | 0.98384 seconds |
-./spec/operations/index_expense_operation_spec.rb[1:1:2:1] | passed | 0.85505 seconds |
+./spec/operations/index_expense_operation_spec.rb[1:1:1:1] | passed | 1.1 seconds     |
+./spec/operations/index_expense_operation_spec.rb[1:1:2:1] | passed | 0.06702 seconds |
+./spec/requests/expense_index_spec.rb[1:1:1]               | failed | 1.86 seconds    |
