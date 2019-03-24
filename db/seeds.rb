@@ -5,28 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-#
-
-# group = [
-#   'Advertising',
-#   'Car & Truck Expenses',
-#   'Contractors',
-#   'Education and Training',
-#   'Employee Benefits',
-#   'Meals & Entertainment',
-#   'Office Expenses & Postages',
-#   'Other Expenses',
-#   'Personal',
-#   'Professional Services',
-#   'Rent or Lease',
-#   'Supplies',
-#   'Travel',
-#   'Utilities'
-# ]
-
-# group.each do |group|
-#   ExpenseCategoryGroup.find_or_create_by(category_group_name: group)
-# end
 
 category_group = [
   {
