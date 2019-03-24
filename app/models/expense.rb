@@ -1,5 +1,5 @@
 class Expense < ApplicationRecord
-  belongs_to :vendor
-  belongs_to :expense_category_listing
+  has_many :vendors
+  has_many :expense_categories
   belongs_to :user
 end
