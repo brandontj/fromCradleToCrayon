@@ -9,7 +9,7 @@
 category_group = [
   {
     "Advertisting" => ["Advertisting (general)"],
-    "Car & Turck Expenses" => [ "Car & Turck Expenses",
+    "Car & Truck Expenses" => [ "Car & Truck Expenses",
                                 "Gas",
                                 "Repairs",
                                 "Vehicle Insurance",

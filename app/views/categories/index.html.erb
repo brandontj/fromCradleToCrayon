@@ -1,0 +1,7 @@
+<% @categories[:categories].each do |category| %>
+  <%# require 'pry'; binding.pry
+  <ul><%= category.expense_category_group.category_group_name %>
+    <li><%= category.category_name %></li>
+  </ul>
+
+<% end %>
