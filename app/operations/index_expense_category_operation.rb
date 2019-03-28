@@ -9,12 +9,11 @@ class IndexExpenseCategoryOperation
 
   def results
     @category_groups.map do |category_group|
-      {
-        category_group.category_group_name =>
-        category_group.expense_categories.map(&:category_name)
-      }
-
-    end.reduce(:merge)
-
+      { id: category_group.id,
+        :name => category_group.category_group_name,
+        :expense_categories => category_group.expense_categories.pluck(
+          :id, :category_name
+        ).map {|id, category_name| {id: id, name: category_name}} }
+    end
   end
 end
