@@ -10,7 +10,7 @@ class DemographicsController < ApplicationController
   # GET /demographics/1
   # GET /demographics/1.json
   def show
-    @demographics = Demographic.find(params[:id])
+    @demographics = Demographicfu.find(params[:id])
   end
 
   # GET /demographics/new
@@ -31,9 +31,11 @@ class DemographicsController < ApplicationController
       if @demographic.save
         format.html { redirect_to @demographic, notice: 'Demographic was successfully created.' }
         format.json { render :show, status: :created, location: @demographic }
+        render status: 200, json: @demographic.to_json
       else
         format.html { render :new }
         format.json { render json: @demographic.errors, status: :unprocessable_entity }
+        render status: 422, json: @demographic.to_json
       end
     end
   end
