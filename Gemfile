@@ -34,11 +34,9 @@ gem 'paranoia'
 
 group :development, :test do
   gem 'database_cleaner'
-  gem 'pdf-inspector'
-  gem 'pry-byebug'
-  gem 'pry-remote'
-  gem 'pry-rescue'
+  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'rails-controller-testing'
   gem 'rspec-its', '~> 1.2.0'
   gem 'rspec-rails', '~> 3.5.0'
@@ -53,14 +51,12 @@ group :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'rspec_postgres_constraints'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', require: false
   gem 'simplecov',        require: false
   gem 'simplecov-rcov',   require: false
   gem 'site_prism'
   gem 'faraday'
-  gem 'functional_helpers'
 end
 
 group :development do

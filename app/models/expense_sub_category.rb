@@ -1,0 +1,2 @@
+class ExpenseSubCategory < ApplicationRecord
+end

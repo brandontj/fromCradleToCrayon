@@ -10,10 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180605172234) do
+ActiveRecord::Schema.define(version: 20190206013506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "demographics", force: :cascade do |t|
+    t.date "date_of_birth", null: false
+    t.date "start_date", null: false
+    t.date "end_date"
+    t.string "parent_name", null: false
+    t.string "allergy"
+    t.string "medicine"
+    t.string "sibling"
+    t.string "referral"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "expense_categories", force: :cascade do |t|
+    t.string "category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+  end
+
+  create_table "expense_category_listings", force: :cascade do |t|
+    t.bigint "expense_category_id"
+    t.bigint "expense_sub_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["expense_category_id"], name: "index_expense_category_listings_on_expense_category_id"
+    t.index ["expense_sub_category_id"], name: "index_expense_category_listings_on_expense_sub_category_id"
+  end
+
+  create_table "expense_sub_categories", force: :cascade do |t|
+    t.string "sub_category_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+  end
+
+  create_table "expenses", force: :cascade do |t|
+    t.bigint "vendor_id"
+    t.bigint "expense_category_listing_id"
+    t.date "debit_date"
+    t.money "debit", scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["expense_category_listing_id"], name: "index_expenses_on_expense_category_listing_id"
+    t.index ["vendor_id"], name: "index_expenses_on_vendor_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,4 +84,16 @@ ActiveRecord::Schema.define(version: 20180605172234) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vendors", force: :cascade do |t|
+    t.string "company_name"
+    t.string "company_description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+  end
+
+  add_foreign_key "expense_category_listings", "expense_categories"
+  add_foreign_key "expense_category_listings", "expense_sub_categories"
+  add_foreign_key "expenses", "expense_category_listings"
+  add_foreign_key "expenses", "vendors"
 end
