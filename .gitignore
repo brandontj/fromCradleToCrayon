@@ -22,3 +22,15 @@
 
 .byebug_history
 /config/database.yml
+
+quickfix.out
+.powenv
+tags
+coverage/*
+vendor/
+spec/examples.txt
+.idea/
+log/capistrano.log*
+db/test.sqlite3-journal
+.*.swp
+
