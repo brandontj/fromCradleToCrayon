@@ -33,4 +33,3 @@ spec/examples.txt
 log/capistrano.log*
 db/test.sqlite3-journal
 .*.swp
-
