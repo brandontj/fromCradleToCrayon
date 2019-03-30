@@ -88,3 +88,34 @@ category_group.each do |group|
   end
 end
 
+vendors = ["Phone", "Acura"]
+
+categories = ["Phone", "Repairs"]
+
+#create two phone charges
+2.times do
+  vendor_id = Vendor.find_or_create_by(company_name: vendors[0]).id
+  category_id = ExpenseCategory.find_by(category_name: categories[0]).id
+
+  Expense.create(
+    vendor_id: vendor_id,
+    expense_category_id: category_id,
+    debit_date: Time.now - rand(2592000),
+    debit: 25.00,
+    user_id: 1
+  )
+end
+
+# create an auto charge
+1.times do
+  vendor_id = Vendor.find_or_create_by(company_name: vendors[1]).id
+  category_id = ExpenseCategory.find_by(category_name: categories[1]).id
+
+  Expense.create(
+    vendor_id: vendor_id,
+    expense_category_id: category_id,
+    debit_date: Time.now - rand(2592000),
+    debit: 300.00,
+    user_id: 1
+  )
+end

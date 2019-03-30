@@ -2,10 +2,10 @@ class IndexExpenseOperation
   attr_reader :expenses
 
   def initialize(user_id)
-    @expenses = Expense.includes({
-        expense_category_listing: :expense_category,
-        expense_category_listing: :expense_sub_category
-    }).includes(:vendor).where(user_id: user_id)
+    @expenses = Expense.includes(
+      :expense_category,
+      :vendor
+    ).where(user_id: user_id)
   end
 
   def results
@@ -31,17 +31,15 @@ class IndexExpenseOperation
 
     {
       company_name: vendor.company_name,
-      company_description: vendor.company_description
     }
   end
 
   def category_info(line_item)
-    category = line_item.expense_category_listing
+    category = line_item.expense_category
     return {} unless category
 
     {
-      parent_category: category.expense_category.category_name,
-      sub_category: category.expense_sub_category.sub_category_name
+      expense_category: category.category_name,
     }
   end
 end

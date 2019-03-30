@@ -7,9 +7,8 @@ RSpec.describe IndexExpenseOperation do
   end
 
   let :expected_results do
-    category = expense.expense_category_listing
+    category = expense.expense_category
     vendor = expense.vendor
-
     [
       {
         debit_date: expense.debit_date,
@@ -19,9 +18,7 @@ RSpec.describe IndexExpenseOperation do
         updated_on: expense.updated_at,
         removed_on: expense.deleted_at,
         company_name: vendor.company_name,
-        company_description: vendor.company_description,
-        parent_category: category.expense_category.category_name,
-        sub_category: category.expense_sub_category.sub_category_name,
+        expense_category: category.category_name,
       }
     ]
   end

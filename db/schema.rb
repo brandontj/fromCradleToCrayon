@@ -35,11 +35,13 @@ ActiveRecord::Schema.define(version: 20190123033858) do
     t.bigint "vendor_id"
     t.bigint "expense_category_id"
     t.date "debit_date"
-    t.money "debit", scale: 2
+    t.decimal "debit", precision: 8, scale: 2
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["expense_category_id"], name: "index_expenses_on_expense_category_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
     t.index ["vendor_id"], name: "index_expenses_on_vendor_id"
   end
 
@@ -73,5 +75,6 @@ ActiveRecord::Schema.define(version: 20190123033858) do
 
   add_foreign_key "expense_categories", "expense_category_groups"
   add_foreign_key "expenses", "expense_categories"
+  add_foreign_key "expenses", "users"
   add_foreign_key "expenses", "vendors"
 end
