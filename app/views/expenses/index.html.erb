@@ -1,1 +1,28 @@
 <h2>From Cradle to Crayon</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Vendor</th>
+      <th>Category</th>
+      <th>Date</th>
+      <th>Vendor</th>
+      <th>Amount</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense[:company_name] %></td>
+        <td><%= expense[:expense_category] %></td>
+        <td><%= expense[:debit_date] %></td>
+        <td><%= expense[:debit] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

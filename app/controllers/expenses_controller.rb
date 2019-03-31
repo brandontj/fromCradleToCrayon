@@ -1,12 +1,13 @@
 class ExpensesController < ApplicationController
   before_action :authenticate_user!
-  attr_reader :user_id
+  attr_reader :user_id, :expenses
 
   def index
-    expenses = IndexExpenseOperation.new(user_id).results
+    @user = user
+    @expenses = IndexExpenseOperation.new(user).results
     respond_to do |format|
-      format.html { expenses }
-      format.json { render json: { expenses: expenses }, status: 200 }
+      format.html
+      format.json { render json: { expenses: @expenses }, status: 200 }
     end
   end
 
