@@ -1,0 +1,9 @@
+
+<% @categories.each do |group| %>
+  <ul>
+    <li><%= group[:name] %></li>
+    <% group[:expense_categories].each do |category| %>
+      <li><%= category[:name] %></li>
+    <% end %>
+  </ul>
+<% end %>

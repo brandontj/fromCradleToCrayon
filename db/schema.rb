@@ -30,23 +30,15 @@ ActiveRecord::Schema.define(version: 20190206013506) do
 
   create_table "expense_categories", force: :cascade do |t|
     t.string "category_name"
+    t.bigint "expense_category_group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.index ["expense_category_group_id"], name: "index_expense_categories_on_expense_category_group_id"
   end
 
-  create_table "expense_category_listings", force: :cascade do |t|
-    t.bigint "expense_category_id"
-    t.bigint "expense_sub_category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
-    t.index ["expense_category_id"], name: "index_expense_category_listings_on_expense_category_id"
-    t.index ["expense_sub_category_id"], name: "index_expense_category_listings_on_expense_sub_category_id"
-  end
-
-  create_table "expense_sub_categories", force: :cascade do |t|
-    t.string "sub_category_name"
+  create_table "expense_category_groups", force: :cascade do |t|
+    t.string "category_group_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -54,13 +46,15 @@ ActiveRecord::Schema.define(version: 20190206013506) do
 
   create_table "expenses", force: :cascade do |t|
     t.bigint "vendor_id"
-    t.bigint "expense_category_listing_id"
+    t.bigint "expense_category_id"
     t.date "debit_date"
-    t.money "debit", scale: 2
+    t.decimal "debit", precision: 8, scale: 2
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.index ["expense_category_listing_id"], name: "index_expenses_on_expense_category_listing_id"
+    t.index ["expense_category_id"], name: "index_expenses_on_expense_category_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
     t.index ["vendor_id"], name: "index_expenses_on_vendor_id"
   end
 
@@ -92,8 +86,8 @@ ActiveRecord::Schema.define(version: 20190206013506) do
     t.datetime "deleted_at"
   end
 
-  add_foreign_key "expense_category_listings", "expense_categories"
-  add_foreign_key "expense_category_listings", "expense_sub_categories"
-  add_foreign_key "expenses", "expense_category_listings"
+  add_foreign_key "expense_categories", "expense_category_groups"
+  add_foreign_key "expenses", "expense_categories"
+  add_foreign_key "expenses", "users"
   add_foreign_key "expenses", "vendors"
 end
