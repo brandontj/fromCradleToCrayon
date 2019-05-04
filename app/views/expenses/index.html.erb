@@ -1,15 +1,16 @@
-<h2>From Cradle to Crayon</h2>
-
-<%= link_to 'New Expense', new_expense_path %>
-<table class="table">
+<div class="ui clearing segment">
+  <h3 class="ui left floated header">Expenses</h3>  
+  <h3 class="ui right floated header">
+    <%= link_to 'New Expense', new_expense_path, class: 'ui primary button' %>
+  </h3>
+</div>
+<table class="ui celled table">
   <thead>
     <tr>
       <th>Vendor</th>
       <th>Category</th>
       <th>Date</th>
-      <th>Vendor</th>
       <th>Amount</th>
-      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -19,7 +20,7 @@
         <td><%= expense[:company_name] %></td>
         <td><%= expense[:expense_category] %></td>
         <td><%= expense[:debit_date] %></td>
-        <td><%= expense[:debit] %></td>
+        <td><%= number_to_currency expense[:debit] %></td>
       </tr>
     <% end %>
   </tbody>

@@ -11,8 +11,10 @@ class IndexExpenseOperation
   def results
     expenses.map do |line_item|
       {
+        id: line_item.id,
         debit_date: line_item.debit_date,
-        debit: line_item.debit,
+        # debit: line_item.debit,
+        debit: convert_from_cents(line_item.debit),
         user_id: line_item.user_id,
         created_on: line_item.created_at,
         updated_on: line_item.updated_at,
@@ -41,5 +43,9 @@ class IndexExpenseOperation
     {
       expense_category: category.category_name,
     }
+  end
+
+  def convert_from_cents(cents)
+    cents.to_f / 100
   end
 end

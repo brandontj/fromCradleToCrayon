@@ -1,33 +1,30 @@
-<%= form_with(model: expense, local: true) do |form| %>
-  <% if expense.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h2>
+<%= form_with(model: @expense, local: true, html: { class: "ui form" }) do |form| %>
+  <div class="ui clearing segment">
+    <h3 class="ui left floated header">New Expense</h3>  
+    <h3 class="ui right floated header">
+      <%= link_to 'Cancel', expenses_path, class: 'ui button' %> 
+      <%= form.submit class: 'ui primary button'%>
+    </h3>
+</div>
 
-      <ul>
-      <% expense.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-
-
+  <div>
+    <%= form.label :expense_category, "Category"  %>
+    <%= form.grouped_collection_select :expense_category_id, ExpenseCategoryGroup.order(:category_group_name), :expense_categories, :category_group_name, :id, :category_name %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :project_name %>
+  <div class="field">
+    <%= form.label :debit_date, "Pick Expense Date" %>
+    <%= form.date_field :debit_date, :value => Time.now.strftime('%Y-%m-%d') %>
   </div>
 
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :project_description %>
+  <div class="field">
+    <%= form.label :vendor %>
+    <%= form.text_field :vendor, id: :company_name %>
   </div>
 
-
-  <div class="actions">
-    <%= form.submit class: 'btn btn-primary round'%>
+  <div class="field">
+    <%= form.label :debit %>
+    <%= form.number_field :debit, min:0, step:0.01 %>
   </div>
+
 <% end %>

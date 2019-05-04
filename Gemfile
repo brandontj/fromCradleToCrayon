@@ -7,9 +7,10 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2'
 # Devise gem for user aunthentication
 gem 'devise'
+gem 'bcrypt'
 # Use pg as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -24,10 +25,11 @@ gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Using Netflix's fast json_api in lieu of the default jbuilder. Read more: https://github.com/Netflix/fast_jsonapi
-gem 'fast_jsonapi'
-gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'paranoia'
+gem 'rack-cors'
+gem 'money-rails'
+gem 'semantic-ui-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

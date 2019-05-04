@@ -1,0 +1,21 @@
+<div class="ui visible left vertical thin sidebar labeled icon menu">
+  <div class="item">
+    <i class="user circle outline icon"></i>
+    <%= current_user.first_name %>
+    <a class="wtem" href=" <%="#{destroy_user_session_path}" %>" >
+      <br />Sign Out<i class="sign-out icon"></i>
+    </a>
+  </div>
+  <a class="item" href=" <%="#{root_path}" %>" >
+    <i class="home icon"></i>
+    Home
+  </a>
+  <a class="item" href=" <%="#{expenses_path}" %>" >
+    <i class="money bill alternate icon"></i>
+    Expenses
+  </a>
+  <a class="item">
+    <i class="smile icon"></i>
+    Friends
+  </a>
+</div>
