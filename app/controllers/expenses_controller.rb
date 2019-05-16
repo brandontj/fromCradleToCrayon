@@ -3,6 +3,7 @@ class ExpensesController < ApplicationController
 
   def index
     @expenses = IndexExpenseOperation.new(user_id).results
+    @recent = @expenses.last(4)
     respond_to do |format|
       format.html
       format.json { render json: @expenses, status: 200 }

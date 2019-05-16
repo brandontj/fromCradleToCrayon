@@ -4,6 +4,35 @@
     <%= link_to 'New Expense', new_expense_path, class: 'ui primary button' %>
   </h3>
 </div>
+<div class="ui sizer vertical segment">
+  <h3 class="ui medium header">Recently Updated </h3>
+</div>
+<div class="ui five cards">
+  <a class="card" href=" <%="#{new_expense_path}" %>" >
+    <div class="ui center aligned padded">
+    <i class="plus square outline icon"></i>
+    New Expense
+    </div>
+  </a>
+  <% @recent.each do |expense| %>
+    <div class="card">
+      <h5 class="ui header"><%= expense[:expense_category] %></h5>
+      <h3 class="ui header"><%= expense[:company_name].presence || "No Vendor" %></h3>
+      <p><%= expense[:debit_date] %></p>
+      <p><%= number_to_currency expense[:debit] %></i>
+    </div>
+  <% end %>
+</div>
+<div class="ui sizer vertical segment">
+  <h3 class="ui left aligned medium header">All Expenses</h3>
+  <div class="ui right aligned category search">
+    <div class="ui icon input">
+      <input class="prompt" type="text" placeholder="Search expenses...">
+      <i class="search icon"></i>
+    </div>
+    <div class="results"></div>
+  </div>
+</div>
 <table class="ui celled table">
   <thead>
     <tr>

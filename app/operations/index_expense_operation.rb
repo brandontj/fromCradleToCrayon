@@ -13,7 +13,6 @@ class IndexExpenseOperation
       {
         id: line_item.id,
         debit_date: line_item.debit_date,
-        # debit: line_item.debit,
         debit: convert_from_cents(line_item.debit),
         user_id: line_item.user_id,
         created_on: line_item.created_at,
@@ -23,6 +22,10 @@ class IndexExpenseOperation
         .merge(category_info(line_item))
         .merge(vendor_info(line_item))
     end
+  end
+
+  def grand_total
+   expense.sum(:debit)
   end
 
   private

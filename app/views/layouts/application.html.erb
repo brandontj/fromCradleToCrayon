@@ -3,20 +3,19 @@
   <head>
     <title>FromCradleToCrayon</title>
     <%= csrf_meta_tags %>
-
+    <%= render 'layouts/shim' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <div class="ui bottom attached segment pushable">
       <%= render 'layouts/sidebar' %>
       <div class="pusher">
-        <div class="ui text container">
-          <div class="column">
-          <%= render 'layouts/header' %>
-          <%= yield %>
-          <%= render 'layouts/footer' %>
+        <div class="content">
+          <div class="ui container">
+            <%= render 'layouts/header' %>
+            <%= yield %>
+            <%= render 'layouts/footer' %>
           </div>
         </div>
       </div>
