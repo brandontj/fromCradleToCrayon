@@ -11,6 +11,7 @@ RSpec.describe IndexExpenseOperation do
     vendor = expense.vendor
     [
       {
+        id: expense.id,
         debit_date: expense.debit_date,
         debit: expense.debit,
         user_id: expense.user_id,
@@ -22,10 +23,10 @@ RSpec.describe IndexExpenseOperation do
       }
     ]
   end
+  let(:user_id) { expense.user_id }
+  let(:operation) { IndexExpenseOperation.new(user_id) }
 
   describe '#results' do
-    let(:user_id) { expense.user_id }
-    let(:operation) { IndexExpenseOperation.new(user_id) }
 
     context 'user has no expenses record' do
       let(:empty_user_id) { create :user }
@@ -37,12 +38,29 @@ RSpec.describe IndexExpenseOperation do
     end
 
     context 'user has expense records' do
-      let(:user_id) { expense.user_id }
-      let(:operation) { IndexExpenseOperation.new(user_id) }
-
       it 'returns results' do
         expect(operation.results).to eq expected_results
       end
     end
+  end
+
+  describe '#grand_total' do
+    let(:grand_total) { expense.debit }
+
+    context 'user has no expense record' do 
+      let(:empty_user_id) { create :user }
+      let(:empty_operation) { IndexExpenseOperation.new(empty_user_id) }
+
+      it 'returns a zero' do
+        expect(empty_operation.grand_total).to eq 0
+      end
+    end
+
+    context 'user has expense records' do
+      it 'returns the sum of the records' do
+        expect(operation.grand_total).to eq expense.debit
+      end
+    end
+
   end
 end

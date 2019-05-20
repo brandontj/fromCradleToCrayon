@@ -9,7 +9,7 @@
 category_group = [
   {
     "Advertisting" => ["Advertisting (general)"],
-    "Car & Truck Expenses" => [ "Car & Truck Expenses",
+    "Car & Truck Expenses" => [ "Car & Truck Expenses (general)",
                                 "Gas",
                                 "Repairs",
                                 "Vehicle Insurance",
@@ -17,7 +17,7 @@ category_group = [
   ],
     "Contractors" => ["Contractors (general)"],
     "Education and Training" => ["Education and Training (general)",],
-    "Employee Benefits" => [ "Employee Benefits",
+    "Employee Benefits" => [ "Employee Benefits (general)",
                              "Accident Insurance",
                              "Health Insurance",
                              "Life Insurance",
@@ -101,7 +101,7 @@ categories = ["Phone", "Repairs"]
     vendor_id: vendor_id,
     expense_category_id: category_id,
     debit_date: Time.now - rand(2592000),
-    debit: 25.00,
+    debit: 2500,
     user_id: 1
   )
 end
@@ -115,7 +115,8 @@ end
     vendor_id: vendor_id,
     expense_category_id: category_id,
     debit_date: Time.now - rand(2592000),
-    debit: 300.00,
+
+    debit: 30000,
     user_id: 1
   )
 end

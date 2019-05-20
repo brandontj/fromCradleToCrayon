@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190206013506) do
+ActiveRecord::Schema.define(version: 2019_04_16_224430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20190206013506) do
     t.bigint "vendor_id"
     t.bigint "expense_category_id"
     t.date "debit_date"
-    t.decimal "debit", precision: 8, scale: 2
+    t.integer "debit"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
